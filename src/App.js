@@ -18,7 +18,7 @@ const DUMMY_LISTS = [
         title: 'Project',
         notes: 'Ask ... for his opinion on the landing page.',
         completed: false,
-        important: true,
+        important: false,
         duedate: new Date()
       },
       {
@@ -63,7 +63,7 @@ const DUMMY_LISTS = [
         title: 'Call doc',
         notes: 'For health check',
         completed: false,
-        important: true,
+        important: false,
         duedate: new Date()
       }
     ]
