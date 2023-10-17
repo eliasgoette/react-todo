@@ -1,0 +1,13 @@
+.button-group {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    gap: 1em;
+}
+
+.button-group button {
+    flex: 1;
+    width: calc(50% - 0.5em);
+}

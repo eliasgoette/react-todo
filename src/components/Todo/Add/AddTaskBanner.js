@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ListSelectDropdown from "../ListSelectionDropdown";
+import ButtonGroup from "../../Generic/ButtonGroup";
 
-export default function AddTaskBanner({editingListIndex, onFinishEditing, className, lists, saveLists }) {
+export default function AddTaskBanner({editingListIndex, onFinishEditing, className='', lists, saveLists }) {
     const [selectedListIndex, setSelectedListIndex] = useState(editingListIndex);
 
     useEffect(() => {
@@ -18,6 +19,10 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
         duedate: ''
     });
 
+    const handleImportantChange = () => {
+        setNewTask({ ...newTask, important: !newTask.important });
+    }
+
     const handleTitleChange = (e) => {
         setNewTask({ ...newTask, title: e.target.value });
     };
@@ -29,10 +34,6 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
     const handleDueDateChange = (e) => {
         setNewTask({ ...newTask, duedate: new Date(e.target.value).toISOString().split('T')[0] });
     };
-
-    const handleImportantChange = () => {
-        setNewTask({ ...newTask, important: !newTask.important });
-    }
 
     const resetStatesAndClose = () => {
         setSelectedListIndex(0);
@@ -56,6 +57,12 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
 
     return (
         <Banner className={className} title={'New Task'}>
+            <MaterialButton
+                clickEvent={handleImportantChange}
+                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
+                iconName={'star'}
+                iconFilled={newTask.important}
+            />
             <div>
                 <label>Title</label>
                 <input
@@ -83,28 +90,24 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
                     placeholder="mm/dd/yyyy"
                 />
             </div>
-            <MaterialButton
-                clickEvent={handleImportantChange}
-                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
-                iconName={'star'}
-                iconFilled={newTask.important}
-            />
             <ListSelectDropdown lists={lists}
                 selectedListIndex={selectedListIndex}
                 onSelectListIndex={setSelectedListIndex}
             />
-            <MaterialButton
-                clickEvent={resetStatesAndClose}
-                colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
-                iconName={'cancel'}
-                text={'Cancel'}
-            />
-            <MaterialButton
-                clickEvent={handleCreateButtonClick}
-                colorScheme={BUTTON_COLOR_SCHEMES.FILLED}
-                iconName={'add_task'}
-                text={'Create'}
-            />
+            <ButtonGroup>
+                <MaterialButton
+                    clickEvent={resetStatesAndClose}
+                    colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
+                    iconName={'cancel'}
+                    text={'Cancel'}
+                />
+                <MaterialButton
+                    clickEvent={handleCreateButtonClick}
+                    colorScheme={BUTTON_COLOR_SCHEMES.FILLED}
+                    iconName={'add_task'}
+                    text={'Create'}
+                />
+            </ButtonGroup>
         </Banner>
     );
 }

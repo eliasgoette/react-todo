@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./MaterialButton.module.css";
 import MaterialSymbolRounded from "./MaterialSymbolRounded";
 
 export const BUTTON_COLOR_SCHEMES = {
@@ -9,9 +10,9 @@ export const BUTTON_COLOR_SCHEMES = {
     TEXT_DESTRUCTIVE: 'text_destructive'
 }
 
-export default function MaterialButton({clickEvent, colorScheme, type='button', iconName, iconFilled=false, text}) {
+export default function MaterialButton({className='', clickEvent, colorScheme, type='button', iconName, iconFilled=false, text}) {
     return(
-        <button onClick={clickEvent} color-scheme={colorScheme} type={type}>
+        <button className={`${styles['material-button']} ${className}`} onClick={clickEvent} color-scheme={colorScheme} type={type}>
             <MaterialSymbolRounded name={iconName} filled={iconFilled} />
             {text !== undefined && <strong>{text}</strong>}
         </button>

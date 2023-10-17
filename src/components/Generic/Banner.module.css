@@ -17,7 +17,7 @@
     min-height: 30vh;
     height: fit-content;
 
-    padding: 1em 2em;
+    padding: 0.5em 1em;
 
     box-shadow: 0 0 5px white;
     background-color: #2f2f2f;
@@ -31,11 +31,46 @@
 
 .banner-input-elements {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+    flex-flow: column wrap;
+    justify-content: center;
     align-items: flex-end;
 }
-.banner-input-elements > * {
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+
+.banner-title,
+.banner-input-elements> :not(button),
+.banner-input-elements> :not(button)>* {
+    width: 100%;
+}
+
+.banner-input-elements>button:not(button[color-scheme^="text"]) {
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    .banner {
+        padding: 1em 2em;
+    }
+
+    .banner-input-elements {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .banner-title,
+    .banner-input-elements> :not(button),
+    .banner-input-elements> :not(button)>* {
+        width: fit-content;
+    }
+
+    .banner-input-elements>button:not(button[color-scheme^="text"]) {
+        width: fit-content;
+    }
+
+    .banner-title,
+    .banner-input-elements>* {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
 }

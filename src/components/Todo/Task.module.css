@@ -4,9 +4,10 @@
     margin-bottom: 1em;
 
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .task>h3 {
@@ -33,4 +34,18 @@
 
 .completed> :first-child {
     text-decoration: line-through;
+}
+
+@media (min-width: 600px) {
+    .task {
+        background-color: #2f2f2f;
+        padding: 0.5em 2em;
+        margin-bottom: 1em;
+    
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
 }

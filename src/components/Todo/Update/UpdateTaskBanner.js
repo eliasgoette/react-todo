@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ListSelectDropdown from "../ListSelectionDropdown";
+import ButtonGroup from "../../Generic/ButtonGroup";
 
 export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, setEditMode, onFinishEditing, lists, saveLists, className }) {
     const [updatedTask, setUpdatedTask] = useState({
@@ -67,6 +68,12 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, s
 
     return (
         <Banner className={className} title={'Edit Task'}>
+            <MaterialButton
+                clickEvent={() => setUpdatedTask({ ...updatedTask, important: !updatedTask.important })}
+                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
+                iconName={'star'}
+                iconFilled={updatedTask.important}
+            />
             <div>
                 <label>Title</label>
                 <input type="text"
@@ -91,12 +98,6 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, s
                     placeholder="mm/dd/yyyy"
                 />
             </div>
-            <MaterialButton
-                clickEvent={() => setUpdatedTask({ ...updatedTask, important: !updatedTask.important })}
-                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
-                iconName={'star'}
-                iconFilled={updatedTask.important}
-            />
             <ListSelectDropdown lists={lists}
                 selectedListIndex={updatedListIndex}
                 onSelectListIndex={setUpdatedListIndex}
@@ -107,14 +108,16 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, s
                 iconName={'delete'}
                 text={'Delete task'}
             />
-            <MaterialButton
-                clickEvent={resetStatesAndClose}
-                colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
-                iconName={'cancel'}
-                text={'Cancel'}
-            />
-            <MaterialButton clickEvent={saveButtonClickHandler}
-                colorScheme={BUTTON_COLOR_SCHEMES.FILLED} iconName={'check'} text={'Save'} />
+            <ButtonGroup>
+                <MaterialButton
+                    clickEvent={resetStatesAndClose}
+                    colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
+                    iconName={'cancel'}
+                    text={'Cancel'}
+                />
+                <MaterialButton clickEvent={saveButtonClickHandler}
+                    colorScheme={BUTTON_COLOR_SCHEMES.FILLED} iconName={'check'} text={'Save'} />
+            </ButtonGroup>
         </Banner>
     );
 }

@@ -11,9 +11,16 @@
     height: fit-content;
 
     margin-bottom: 2em;
+    padding: 1em 0;
 
     box-shadow: 0 0 5px white;
     background-color: #3f3f3f;
 
     z-index: 1000;
+}
+
+@media (min-width: 600px) {
+    .header {
+        padding: 0;
+    }
 }

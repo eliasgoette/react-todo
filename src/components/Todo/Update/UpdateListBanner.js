@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
+import ButtonGroup from "../../Generic/ButtonGroup";
 
 export default function UpdateListBanner({ onFinishEditing, lists, saveLists, editingListIndex, className }) {
     const [updatedList, setUpdatedList] = useState({name: '', content: []});
@@ -50,14 +51,17 @@ export default function UpdateListBanner({ onFinishEditing, lists, saveLists, ed
                 iconName={'delete'}
                 text={'Delete list'}
             />
-            <MaterialButton
-                clickEvent={resetStatesAndClose}
-                colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
-                iconName={'cancel'}
-                text={'Cancel'}
-            />
-            <MaterialButton clickEvent={saveButtonClickHandler}
-                colorScheme={BUTTON_COLOR_SCHEMES.FILLED} iconName={'check'} text={'Save'} />
+            <ButtonGroup>
+
+                <MaterialButton
+                    clickEvent={resetStatesAndClose}
+                    colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
+                    iconName={'cancel'}
+                    text={'Cancel'}
+                />
+                <MaterialButton clickEvent={saveButtonClickHandler}
+                    colorScheme={BUTTON_COLOR_SCHEMES.FILLED} iconName={'check'} text={'Save'} />
+            </ButtonGroup>
         </Banner>
     );
 }

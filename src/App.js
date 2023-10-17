@@ -76,6 +76,9 @@ export default function App() {
   const saveLists = (updatedLists) => {
     // Update state
     setLists(updatedLists);
+
+    // Save to persistant storage
+    // (TODO)
   }
 
   return(

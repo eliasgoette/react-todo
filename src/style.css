@@ -15,7 +15,7 @@ html {
 }
 
 label {
-    font-size: 0.6em;
+    font-size: 0.7em;
 }
 
 button,
@@ -31,7 +31,7 @@ select {
     margin-bottom: 1em;
 
     width: fit-content;
-    min-height: 3em;
+    min-height: 4em;
     height: fit-content;
 
     display: flex;

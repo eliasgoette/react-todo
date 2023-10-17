@@ -1,9 +1,15 @@
 .list {
     margin: 1em 0;
-    padding: 1em 2em;
+    padding: 0.5em 1em;
     background-color: #3f3f3f;
 }
 
 .list > h2 {
     width: -webkit-fill-available;
+}
+
+@media (min-width: 600px) {
+    .list {
+        padding: 1em 2em;
+    }
 }
