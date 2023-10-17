@@ -62,6 +62,7 @@ select[color-scheme="text"] {
     color: white;
     background-color: transparent;
     border: none;
+    padding: 1em 2em;
 }
 
 button>*,

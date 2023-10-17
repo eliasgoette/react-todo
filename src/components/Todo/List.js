@@ -14,7 +14,7 @@ export default function List({
             <h2 onClick={() => onUpdateList(index)}>{name}</h2>
             <div>
                 <AddTaskButton clickEvent={() => onAddTask(index)} lists={lists} saveLists={saveLists} listIndex={index} />
-                {content.map((task, i) => <Task onUpdateTask={onUpdateTask} lists={lists} listIndex={index} taskIndex={i} key={`${i}: ${task.title}`} />)}
+                {content.map((task, i) => <Task onUpdateTask={onUpdateTask} lists={lists} saveLists={saveLists} listIndex={index} taskIndex={i} key={`${i}: ${task.title}`} />)}
             </div>
         </div>
     );
