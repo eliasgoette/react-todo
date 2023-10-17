@@ -76,7 +76,6 @@ export default function App() {
   const saveLists = (updatedLists) => {
     // Update state
     setLists(updatedLists);
-    console.log("e");
   }
 
   return(

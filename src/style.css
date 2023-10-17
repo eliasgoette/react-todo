@@ -48,6 +48,14 @@ select[color-scheme="filled"] {
     border: none;
 }
 
+button[color-scheme="filled_destructive"],
+input[color-scheme="filled_destructive"],
+select[color-scheme="filled_destructive"] {
+    color: white;
+    background-color: #8f1818;
+    border: none;
+}
+
 button[color-scheme="text"],
 input[color-scheme="text"],
 select[color-scheme="text"] {

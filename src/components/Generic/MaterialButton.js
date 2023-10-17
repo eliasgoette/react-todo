@@ -3,6 +3,7 @@ import MaterialSymbolRounded from "./MaterialSymbolRounded";
 
 export const BUTTON_COLOR_SCHEMES = {
     FILLED: 'filled',
+    FILLED_DESTRUCTIVE: 'filled_destructive',
     OUTLINED: 'outlined',
     TEXT: 'text'
 }

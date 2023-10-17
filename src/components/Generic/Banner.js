@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Banner.module.css";
-import MaterialSymbolRounded from "./MaterialSymbolRounded";
 
 export default function Banner({title, className, children}) {
     return(

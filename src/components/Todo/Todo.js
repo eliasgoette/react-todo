@@ -50,8 +50,11 @@ export default function Todo({ lists, saveLists }) {
             <AddTaskBanner className={editMode !== TODO_EDIT_MODE.ADD_TASK && styles.hidden}
                 editingListIndex={editingListIndex} onFinishEditing={finishEditing}
                 lists={lists} saveLists={saveLists} />
-            <UpdateListBanner className={editMode !== TODO_EDIT_MODE.UPDATE_LIST && styles.hidden} />
-            <UpdateTaskBanner className={editMode !== TODO_EDIT_MODE.UPDATE_TASK && styles.hidden} />
+            <UpdateListBanner className={editMode !== TODO_EDIT_MODE.UPDATE_LIST && styles.hidden}
+            lists={lists} saveLists={saveLists} editingListIndex={editingListIndex}
+            onFinishEditing={finishEditing} />
+            <UpdateTaskBanner className={editMode !== TODO_EDIT_MODE.UPDATE_TASK && styles.hidden}
+            onFinishEditing={finishEditing} />
         </div>
     );
 }

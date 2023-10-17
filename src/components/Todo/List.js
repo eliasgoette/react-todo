@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./List.module.css";
 import Task from "./Task";
 import AddTaskButton from "./Add/AddTaskButton";
-import { TODO_EDIT_MODE } from "./Todo";
 
 export default function List({
     onUpdateList, onAddTask, onUpdateTask,

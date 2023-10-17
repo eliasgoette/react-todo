@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import MaterialSymbolRounded from "../../Generic/MaterialSymbolRounded";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ListSelectDropdown from "../ListSelectionDropdown";
