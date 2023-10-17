@@ -1,25 +1,88 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./style.css";
+import Header from "./components/Generic/Header";
+import Todo from "./components/Todo/Todo";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const DUMMY_LISTS = [
+  {
+    name: 'Work',
+    content: [
+      {
+        title: 'Meeting',
+        notes: 'Be on time!!!',
+        completed: true,
+        important: true,
+        duedate: new Date()
+      },
+      {
+        title: 'Project',
+        notes: 'Ask ... for his opinion on the landing page.',
+        completed: false,
+        important: true,
+        duedate: new Date()
+      },
+      {
+        title: 'Learn React',
+        notes: 'States, hooks',
+        completed: false,
+        important: true,
+        duedate: new Date()
+      },
+      {
+        title: 'Apply for dev job',
+        notes: 'New photos',
+        completed: false,
+        important: true,
+        duedate: new Date()
+      }
+    ]
+  },
+  {
+    name: 'Home',
+    content: [
+      {
+        title: 'Clean the floor',
+        notes: '',
+        completed: true,
+        important: false,
+        duedate: new Date()
+      }
+    ]
+  },
+  {
+    name: 'Misc',
+    content: [
+      {
+        title: 'Buy ingredients for pancakes',
+        notes: '[ingredients]',
+        completed: false,
+        important: false,
+        duedate: new Date()
+      },
+      {
+        title: 'Call doc',
+        notes: 'For health check',
+        completed: false,
+        important: true,
+        duedate: new Date()
+      }
+    ]
+  }
+];
+
+export default function App() {
+  const [lists, setLists] = useState(DUMMY_LISTS);
+
+  const saveLists = (updatedLists) => {
+    // Update state
+    setLists(updatedLists);
+    console.log("e");
+  }
+
+  return(
+    <div>
+      <Header />
+      <Todo lists={lists} saveLists={saveLists} />
     </div>
   );
 }
-
-export default App;

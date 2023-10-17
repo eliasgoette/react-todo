@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: fit-content;
+
+    margin-bottom: 2em;
+
+    box-shadow: 0 0 5px white;
+    background-color: #3f3f3f;
+
+    z-index: 1000;
+}

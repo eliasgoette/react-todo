@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    border-radius: 2em;
+}
+
+html {
+    background-color: #2f2f2f;
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+label {
+    font-size: 0.6em;
+}
+
+button,
+input,
+select {
+    background-color: #2f2f2f;
+    color: white;
+
+    font-family: inherit;
+
+    border: 2px solid currentColor;
+    padding: 0.5em 1em;
+    margin-bottom: 1em;
+
+    width: fit-content;
+    min-height: 3em;
+    height: fit-content;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+button[color-scheme="filled"],
+input[color-scheme="filled"],
+select[color-scheme="filled"] {
+    color: #2f2f2f;
+    background-color: white;
+    border: none;
+}
+
+button[color-scheme="text"],
+input[color-scheme="text"],
+select[color-scheme="text"] {
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+button>*,
+input>*,
+select>* {
+    margin: 0.5em;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+    /* Makes it white */
+}
