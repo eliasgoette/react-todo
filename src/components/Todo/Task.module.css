@@ -6,17 +6,31 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
+}
+
+.task>h3 {
+    width: -webkit-fill-available;
+}
+
+.task>button {
+    margin: 0 1em;
 }
 
 .completed {
     color: #7f7f7f;
 }
 
-.task > :nth-child(2) {
+/* .task > * {
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+} */
+
+/* .task> :nth-child(2) {
     margin-left: auto;
     margin-right: 2em;
-}
+} */
 
-.completed > :first-child {
+.completed> :first-child {
     text-decoration: line-through;
 }

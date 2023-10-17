@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
+import ListSelectDropdown from "../ListSelectionDropdown";
 
-export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, onFinishEditing, lists, saveLists, className }) {
+export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, setEditMode, onFinishEditing, lists, saveLists, className }) {
     const [updatedTask, setUpdatedTask] = useState({
         title: '',
         notes: '',
@@ -11,11 +12,14 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
         duedate: ''
     });
 
+    const [updatedListIndex, setUpdatedListIndex] = useState(editingListIndex);
+
     const setDefaultValues = () => {
         if (editingListIndex !== '' && !(isNaN(editingListIndex)) && editingListIndex < lists.length)
-            if (editingTaskIndex !== '' && !(isNaN(editingTaskIndex)) && editingTaskIndex < lists[editingListIndex].content.length)
+            if (editingTaskIndex !== '' && !(isNaN(editingTaskIndex)) && editingTaskIndex < lists[editingListIndex].content.length) {
                 setUpdatedTask(lists[editingListIndex].content[editingTaskIndex]);
-            else
+                setUpdatedListIndex(editingListIndex);
+            } else {
                 setUpdatedTask({
                     title: '',
                     notes: '',
@@ -23,6 +27,8 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
                     important: false,
                     duedate: ''
                 });
+                setUpdatedListIndex(0);
+            }
     }
 
     useEffect(() => {
@@ -48,7 +54,12 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
 
     const saveButtonClickHandler = () => {
         const updatedLists = [...lists];
-        updatedLists[editingListIndex].content[editingTaskIndex] = updatedTask;
+        if(editingListIndex !== updatedListIndex) {
+            updatedLists[editingListIndex].content.pop(editingListIndex);
+            updatedLists[updatedListIndex].content.splice(0, 0, updatedTask);
+        } else {
+            updatedLists[editingListIndex].content[editingTaskIndex] = updatedTask;
+        }
         saveLists(updatedLists);
         onFinishEditing();
         setDefaultValues();
@@ -62,6 +73,34 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
                     value={updatedTask.title} onChange={(e) => setUpdatedTask({ ...updatedTask, title: e.target.value })}
                     placeholder="New task" />
             </div>
+            <div>
+                <label>Notes</label>
+                <input
+                    type="text"
+                    value={updatedTask.notes}
+                    onChange={(e) => setUpdatedTask({ ...updatedTask, notes: e.target.value })}
+                    placeholder="Your notes"
+                />
+            </div>
+            <div>
+                <label>Due date</label>
+                <input
+                    type="date"
+                    value={updatedTask.duedate}
+                    onChange={(e) => setUpdatedTask({ ...updatedTask, duedate: e.target.value })}
+                    placeholder="mm/dd/yyyy"
+                />
+            </div>
+            <MaterialButton
+                clickEvent={() => setUpdatedTask({ ...updatedTask, important: !updatedTask.important })}
+                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
+                iconName={'star'}
+                iconFilled={updatedTask.important}
+            />
+            <ListSelectDropdown lists={lists}
+                selectedListIndex={updatedListIndex}
+                onSelectListIndex={setUpdatedListIndex}
+            />
             <MaterialButton
                 clickEvent={deleteButtonClickHandler}
                 colorScheme={BUTTON_COLOR_SCHEMES.FILLED_DESTRUCTIVE}

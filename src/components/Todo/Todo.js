@@ -35,11 +35,11 @@ export default function Todo({ lists, saveLists }) {
     return (
         <div className={styles.todo}>
             <AddListButton
-                clickEvent={() => setEditStates(TODO_EDIT_MODE.ADD_LIST, lists.length, null)}
+                clickEvent={() => setEditStates(TODO_EDIT_MODE.ADD_LIST, lists.length, '')}
                 lists={lists} saveLists={saveLists} />
             {lists.map((list, i) => (
                 <List
-                    onUpdateList={(listIndex) => setEditStates(TODO_EDIT_MODE.UPDATE_LIST, listIndex, null)}
+                    onUpdateList={(listIndex) => setEditStates(TODO_EDIT_MODE.UPDATE_LIST, listIndex, '')}
                     onAddTask={(listIndex) => setEditStates(TODO_EDIT_MODE.ADD_TASK, listIndex, lists[listIndex].content.length)}
                     onUpdateTask={(listIndex, taskIndex) => setEditStates(TODO_EDIT_MODE.UPDATE_TASK, listIndex, taskIndex)}
                     editingListIndex={editingListIndex} editingTaskIndex={editingTaskIndex}
@@ -57,7 +57,7 @@ export default function Todo({ lists, saveLists }) {
             <UpdateTaskBanner className={editMode !== TODO_EDIT_MODE.UPDATE_TASK && styles.hidden}
                 lists={lists} saveLists={saveLists}
                 editingListIndex={editingListIndex} editingTaskIndex={editingTaskIndex}
-                onFinishEditing={finishEditing} />
+                setEditMode={setEditMode} onFinishEditing={finishEditing} />
         </div>
     );
 }

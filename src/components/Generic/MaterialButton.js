@@ -3,9 +3,10 @@ import MaterialSymbolRounded from "./MaterialSymbolRounded";
 
 export const BUTTON_COLOR_SCHEMES = {
     FILLED: 'filled',
-    FILLED_DESTRUCTIVE: 'filled_destructive',
     OUTLINED: 'outlined',
-    TEXT: 'text'
+    TEXT: 'text',
+    FILLED_DESTRUCTIVE: 'filled_destructive',
+    TEXT_DESTRUCTIVE: 'text_destructive'
 }
 
 export default function MaterialButton({clickEvent, colorScheme, type='button', iconName, iconFilled=false, text}) {

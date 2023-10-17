@@ -3,3 +3,7 @@
     padding: 1em 2em;
     background-color: #3f3f3f;
 }
+
+.list > h2 {
+    width: -webkit-fill-available;
+}

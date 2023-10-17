@@ -48,6 +48,15 @@ select[color-scheme="filled"] {
     border: none;
 }
 
+button[color-scheme="text"],
+input[color-scheme="text"],
+select[color-scheme="text"] {
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 1em 2em;
+}
+
 button[color-scheme="filled_destructive"],
 input[color-scheme="filled_destructive"],
 select[color-scheme="filled_destructive"] {
@@ -56,13 +65,12 @@ select[color-scheme="filled_destructive"] {
     border: none;
 }
 
-button[color-scheme="text"],
-input[color-scheme="text"],
-select[color-scheme="text"] {
-    color: white;
+button[color-scheme="text_destructive"],
+input[color-scheme="text_destructive"],
+select[color-scheme="text_destructive"] {
+    color: #8f1818;
     background-color: transparent;
     border: none;
-    padding: 1em 2em;
 }
 
 button>*,

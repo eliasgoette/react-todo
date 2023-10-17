@@ -14,13 +14,13 @@ export default function Task({ onUpdateTask, lists, saveLists, listIndex, taskIn
         setCompleted(newCompleted);
         updateTask('completed', newCompleted);
     }
-    
+
     const toggleImportant = () => {
         const newImportant = !important;
         setImportant(newImportant);
         updateTask('important', newImportant);
     }
-    
+
     const updateTask = (key, value) => {
         const updatedLists = [...lists];
         updatedLists[listIndex].content[taskIndex] = {
@@ -28,25 +28,17 @@ export default function Task({ onUpdateTask, lists, saveLists, listIndex, taskIn
             [key]: value
         }
         saveLists(updatedLists);
-    }    
+    }
 
     return (
         <div className={`${styles.task} ${currentTask.completed ? styles.completed : ''}`}>
             <h3 onClick={() => onUpdateTask(listIndex, taskIndex)}>{currentTask.title}</h3>
             <MaterialButton clickEvent={toggleCompleted}
-            colorScheme={BUTTON_COLOR_SCHEMES.TEXT} 
-            iconName={currentTask.completed ? 'check_circle' : 'circle'}
-            text="" />
+                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
+                iconName={currentTask.completed ? 'check_circle' : 'circle'} />
             <MaterialButton clickEvent={toggleImportant}
-            colorScheme={BUTTON_COLOR_SCHEMES.TEXT} 
-            iconName={'star'} iconFilled={currentTask.important}
-            text="" />
-            {/* <span onClick={toggleCompleted}>
-                <MaterialSymbolRounded name={currentTask.completed ? 'check_circle' : 'circle'} />
-            </span>
-            <span onClick={toggleImportant}>
-                <MaterialSymbolRounded name={'star'} filled={currentTask.important} />
-            </span> */}
+                colorScheme={BUTTON_COLOR_SCHEMES.TEXT}
+                iconName={'star'} iconFilled={currentTask.important} />
         </div>
     );
 }

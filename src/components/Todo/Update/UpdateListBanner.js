@@ -29,7 +29,8 @@ export default function UpdateListBanner({ onFinishEditing, lists, saveLists, ed
     }
 
     const saveButtonClickHandler = () => {
-        const updatedLists = [updatedList, ...lists];
+        const updatedLists = [...lists];
+        updatedLists[editingListIndex] = updatedList;
         saveLists(updatedLists);
         onFinishEditing();
         setDefaultValues();
