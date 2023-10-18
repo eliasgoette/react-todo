@@ -72,10 +72,11 @@ let lists = [];
 
 export async function getStoredLists() {
     const storedLists = localStorage.getItem('react-todo-lists');
+
     if (storedLists) {
         return JSON.parse(storedLists);
     }
-    // If nothing is found in local storage, return the default lists
+
     return lists;
 }
 

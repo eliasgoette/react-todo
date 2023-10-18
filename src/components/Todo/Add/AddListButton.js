@@ -3,7 +3,7 @@ import styles from "./AddListButton.module.css";
 import MaterialSymbolRounded from "../../Generic/MaterialSymbolRounded";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 
-export default function AddListButton({ clickEvent, lists, saveLists }) {
+export default function AddListButton({ clickEvent }) {
     return (
         <MaterialButton className={styles['add-list-button']}
         clickEvent={clickEvent}

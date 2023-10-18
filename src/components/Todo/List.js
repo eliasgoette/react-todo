@@ -3,10 +3,7 @@ import styles from "./List.module.css";
 import Task from "./Task";
 import AddTaskButton from "./Add/AddTaskButton";
 
-export default function List({
-    onUpdateList, onAddTask, onUpdateTask,
-    lists, saveLists, index
-}) {
+export default function List({ onUpdateList, onAddTask, onUpdateTask, lists, saveLists, index }) {
     const { name, content } = lists[index];
 
     return (

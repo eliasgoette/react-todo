@@ -1,0 +1,18 @@
+.hidden {
+    display: none;
+}
+
+.error-message {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+
+    margin-bottom: 2em;
+}
+
+.error-message > * {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+    width: fit-content !important;
+}

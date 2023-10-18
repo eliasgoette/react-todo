@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { getStoredLists, setStoredLists } from "./components/storage";
+import { ERROR_STATES } from "./components/Generic/ErrorBanner";
 import Header from "./components/Generic/Header";
 import Todo from "./components/Todo/Todo";
+import ErrorBanner from "./components/Generic/ErrorBanner";
 
 export default function App() {
   const [lists, setLists] = useState([]);
+  const [errorState, setErrorState] = useState(ERROR_STATES.CLEAR);
 
   useEffect(() => {
     (async () => {
@@ -22,10 +25,15 @@ export default function App() {
     await setStoredLists(updatedLists);
   }
 
-  return(
+  const reportErrorState = (newErrorState) => {
+    setErrorState(newErrorState);
+  }
+
+  return (
     <div>
       <Header />
-      <Todo lists={lists} saveLists={saveLists} />
+      <Todo lists={lists} saveLists={saveLists} onError={reportErrorState} />
+      <ErrorBanner errorState={errorState} onClearErrors={() => reportErrorState(ERROR_STATES.CLEAR)} />
     </div>
   );
 }

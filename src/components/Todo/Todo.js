@@ -15,7 +15,7 @@ export const TODO_EDIT_MODE = {
     UPDATE_TASK: 'update_task'
 }
 
-export default function Todo({ lists, saveLists }) {
+export default function Todo({ lists, saveLists, onError }) {
     const [editMode, setEditMode] = useState(TODO_EDIT_MODE.EDIT_OFF);
     const [editingListIndex, setEditingListIndex] = useState('');
     const [editingTaskIndex, setEditingTaskIndex] = useState('');
@@ -36,29 +36,37 @@ export default function Todo({ lists, saveLists }) {
         <div className={styles.todo}>
             <AddListButton
                 clickEvent={() => setEditStates(TODO_EDIT_MODE.ADD_LIST, lists.length, '')}
-                lists={lists} saveLists={saveLists} />
+                lists={lists} saveLists={saveLists}
+            />
             {lists.map((list, i) => (
                 <List
                     onUpdateList={(listIndex) => setEditStates(TODO_EDIT_MODE.UPDATE_LIST, listIndex, '')}
                     onAddTask={(listIndex) => setEditStates(TODO_EDIT_MODE.ADD_TASK, listIndex, lists[listIndex].content.length)}
                     onUpdateTask={(listIndex, taskIndex) => setEditStates(TODO_EDIT_MODE.UPDATE_TASK, listIndex, taskIndex)}
                     editingListIndex={editingListIndex} editingTaskIndex={editingTaskIndex}
-                    lists={lists} saveLists={saveLists} index={i} key={`${i}: ${list.name}`} />
+                    lists={lists} saveLists={saveLists} index={i} key={`${i}: ${list.name}`}
+                />
             ))}
-            {lists.length < 1 && <strong className={styles['no-lists-message']}>Create your first list</strong>}
+            {
+                lists.length < 1 && <strong className={styles['no-lists-message']}>Create your first list</strong>
+            }
             <AddListBanner className={editMode !== TODO_EDIT_MODE.ADD_LIST && styles.hidden}
-                lists={lists} saveLists={saveLists} onFinishEditing={finishEditing} />
+                lists={lists} saveLists={saveLists} onFinishEditing={finishEditing} onError={onError}
+            />
             <AddTaskBanner className={editMode !== TODO_EDIT_MODE.ADD_TASK && styles.hidden}
                 editingListIndex={editingListIndex} onFinishEditing={finishEditing}
-                lists={lists} saveLists={saveLists} />
+                lists={lists} saveLists={saveLists} onError={onError}
+            />
             <UpdateListBanner className={editMode !== TODO_EDIT_MODE.UPDATE_LIST && styles.hidden}
                 lists={lists} saveLists={saveLists}
                 editingListIndex={editingListIndex}
-                onFinishEditing={finishEditing} />
+                onFinishEditing={finishEditing} onError={onError}
+            />
             <UpdateTaskBanner className={editMode !== TODO_EDIT_MODE.UPDATE_TASK && styles.hidden}
                 lists={lists} saveLists={saveLists}
                 editingListIndex={editingListIndex} editingTaskIndex={editingTaskIndex}
-                setEditMode={setEditMode} onFinishEditing={finishEditing} />
+                setEditMode={setEditMode} onFinishEditing={finishEditing} onError={onError}
+            />
         </div>
     );
 }

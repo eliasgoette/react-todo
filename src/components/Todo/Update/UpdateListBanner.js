@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ButtonGroup from "../../Generic/ButtonGroup";
+import { ERROR_STATES } from "../../Generic/ErrorBanner";
 
-export default function UpdateListBanner({ onFinishEditing, lists, saveLists, editingListIndex, className }) {
+export default function UpdateListBanner({ onFinishEditing, lists, saveLists, editingListIndex, className, onError }) {
     const [updatedList, setUpdatedList] = useState({name: '', content: []});
 
     const setDefaultValues = () => {
@@ -30,11 +31,15 @@ export default function UpdateListBanner({ onFinishEditing, lists, saveLists, ed
     }
 
     const saveButtonClickHandler = () => {
-        const updatedLists = [...lists];
-        updatedLists[editingListIndex] = updatedList;
-        saveLists(updatedLists);
-        onFinishEditing();
-        setDefaultValues();
+        if(updatedList.name !== '' && updatedList.name !== null && updatedList.name !== undefined) {
+            const updatedLists = [...lists];
+            updatedLists[editingListIndex] = updatedList;
+            saveLists(updatedLists);
+            onFinishEditing();
+            setDefaultValues();
+        } else {
+            onError(ERROR_STATES.WRONG_INPUT_NAME);
+        }
     }
 
     return (

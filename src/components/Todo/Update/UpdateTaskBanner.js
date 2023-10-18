@@ -3,8 +3,9 @@ import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ListSelectDropdown from "../ListSelectionDropdown";
 import ButtonGroup from "../../Generic/ButtonGroup";
+import { ERROR_STATES } from "../../Generic/ErrorBanner";
 
-export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, setEditMode, onFinishEditing, lists, saveLists, className }) {
+export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, onFinishEditing, lists, saveLists, className, onError }) {
     const [updatedTask, setUpdatedTask] = useState({
         title: '',
         notes: '',
@@ -54,16 +55,20 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, s
     }
 
     const saveButtonClickHandler = () => {
-        const updatedLists = [...lists];
-        if(editingListIndex !== updatedListIndex) {
-            updatedLists[editingListIndex].content.pop(editingListIndex);
-            updatedLists[updatedListIndex].content.splice(0, 0, updatedTask);
+        if(updatedTask.title !== '' && updatedTask.title !== null && updatedTask.title !== undefined) {
+            const updatedLists = [...lists];
+            if(editingListIndex !== updatedListIndex) {
+                updatedLists[editingListIndex].content.pop(editingListIndex);
+                updatedLists[updatedListIndex].content.splice(0, 0, updatedTask);
+            } else {
+                updatedLists[editingListIndex].content[editingTaskIndex] = updatedTask;
+            }
+            saveLists(updatedLists);
+            onFinishEditing();
+            setDefaultValues();
         } else {
-            updatedLists[editingListIndex].content[editingTaskIndex] = updatedTask;
+            onError(ERROR_STATES.WRONG_INPUT_TITLE);
         }
-        saveLists(updatedLists);
-        onFinishEditing();
-        setDefaultValues();
     }
 
     return (

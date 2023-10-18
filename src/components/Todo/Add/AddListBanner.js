@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ButtonGroup from "../../Generic/ButtonGroup";
+import {ERROR_STATES} from "../../Generic/ErrorBanner";
 
-export default function AddListBanner({ onFinishEditing, lists, saveLists, className }) {
+export default function AddListBanner({ onFinishEditing, lists, saveLists, className, onError }) {
     const [newList, setNewList] = useState({name: 'New list', content: []});
 
     const resetStatesAndClose = () => {
@@ -12,9 +13,13 @@ export default function AddListBanner({ onFinishEditing, lists, saveLists, class
     }
 
     const createButtonClickHandler = () => {
-        const updatedLists = [newList, ...lists];
-        saveLists(updatedLists);
-        onFinishEditing();
+        if(newList.name !== '' && newList.name !== null && newList.name !== undefined) {
+            const updatedLists = [newList, ...lists];
+            saveLists(updatedLists);
+            onFinishEditing();
+        } else {
+            onError(ERROR_STATES.WRONG_INPUT_NAME);
+        }
     }
 
     return (

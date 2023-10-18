@@ -3,7 +3,7 @@ import styles from "./AddTaskButton.module.css";
 import MaterialSymbolRounded from "../../Generic/MaterialSymbolRounded";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 
-export default function AddTaskButton({ clickEvent, lists, saveLists, listIndex }) {
+export default function AddTaskButton({ clickEvent }) {
     return (
         <MaterialButton className={styles['add-task-button']}
             clickEvent={clickEvent}

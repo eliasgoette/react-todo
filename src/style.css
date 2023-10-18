@@ -30,7 +30,8 @@ select {
     padding: 0.5em 1em;
     margin-bottom: 1em;
 
-    width: fit-content;
+    min-width: fit-content;
+    width: auto;
     min-height: 4em;
     height: fit-content;
 
@@ -63,6 +64,12 @@ select[color-scheme="filled_destructive"] {
     color: white;
     background-color: #8f1818;
     border: none;
+}
+
+button[color-scheme="outlined_destructive"],
+input[color-scheme="outlined_destructive"],
+select[color-scheme="outlined_destructive"] {
+    color: #8f1818;
 }
 
 button[color-scheme="text_destructive"],

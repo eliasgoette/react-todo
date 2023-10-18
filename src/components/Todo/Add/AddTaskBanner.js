@@ -3,8 +3,9 @@ import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ListSelectDropdown from "../ListSelectionDropdown";
 import ButtonGroup from "../../Generic/ButtonGroup";
+import { ERROR_STATES } from "../../Generic/ErrorBanner";
 
-export default function AddTaskBanner({editingListIndex, onFinishEditing, className='', lists, saveLists }) {
+export default function AddTaskBanner({editingListIndex, onFinishEditing, className='', lists, saveLists, onError }) {
     const [selectedListIndex, setSelectedListIndex] = useState(editingListIndex);
 
     useEffect(() => {
@@ -49,10 +50,14 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
     }
 
     const handleCreateButtonClick = () => {
-        const updatedLists = JSON.parse(JSON.stringify(lists));
-        updatedLists[selectedListIndex].content.splice(0, 0, newTask);
-        saveLists(updatedLists);
-        resetStatesAndClose();
+        if(newTask.title !== '' && newTask.title !== undefined && newTask.title !== null) {
+            const updatedLists = JSON.parse(JSON.stringify(lists));
+            updatedLists[selectedListIndex].content.splice(0, 0, newTask);
+            saveLists(updatedLists);
+            resetStatesAndClose();
+        } else {
+            onError(ERROR_STATES.WRONG_INPUT_TITLE);
+        }
     }
 
     return (
