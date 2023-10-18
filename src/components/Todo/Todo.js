@@ -45,6 +45,7 @@ export default function Todo({ lists, saveLists }) {
                     editingListIndex={editingListIndex} editingTaskIndex={editingTaskIndex}
                     lists={lists} saveLists={saveLists} index={i} key={`${i}: ${list.name}`} />
             ))}
+            {lists.length < 1 && <strong className={styles['no-lists-message']}>Create your first list</strong>}
             <AddListBanner className={editMode !== TODO_EDIT_MODE.ADD_LIST && styles.hidden}
                 lists={lists} saveLists={saveLists} onFinishEditing={finishEditing} />
             <AddTaskBanner className={editMode !== TODO_EDIT_MODE.ADD_TASK && styles.hidden}

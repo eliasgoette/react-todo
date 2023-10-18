@@ -5,3 +5,10 @@
 .hidden {
     display: none;
 }
+
+.no-lists-message {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: #8f8f8f;
+}
