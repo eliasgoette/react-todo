@@ -8,6 +8,10 @@
     width: -webkit-fill-available;
 }
 
+.add-task-button {
+    width: 100%;
+}
+
 @media (min-width: 600px) {
     .list {
         padding: 1em 2em;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Todo.module.css";
 import List from "./List";
-import AddListButton from "./Add/AddListButton";
+import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../Generic/MaterialButton";
 import AddListBanner from "./Add/AddListBanner";
 import AddTaskBanner from "./Add/AddTaskBanner"
 import UpdateListBanner from "./Update/UpdateListBanner";
@@ -34,10 +34,10 @@ export default function Todo({ lists, saveLists, onError }) {
 
     return (
         <div className={styles.todo}>
-            <AddListButton
+            <MaterialButton className={styles['add-list-button']}
                 clickEvent={() => setEditStates(TODO_EDIT_MODE.ADD_LIST, lists.length, '')}
-                lists={lists} saveLists={saveLists}
-            />
+                colorScheme={BUTTON_COLOR_SCHEMES.OUTLINED}
+                text={'New List'} iconName={'list_alt_add'} />
             {lists.map((list, i) => (
                 <List
                     onUpdateList={(listIndex) => setEditStates(TODO_EDIT_MODE.UPDATE_LIST, listIndex, '')}
