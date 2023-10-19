@@ -10,9 +10,9 @@
 
 .banner {
     position: fixed;
-    left: 2em;
-    right: 2em;
-    bottom: 2em;
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 0.5em;
 
     height: fit-content;
     max-height: 65vh;
@@ -58,6 +58,10 @@
 @media (min-width: 600px) {
     .banner {
         padding: 1em 2em;
+
+        left: 2em;
+        right: 2em;
+        bottom: 2em;
     }
 
     .banner-input-elements {

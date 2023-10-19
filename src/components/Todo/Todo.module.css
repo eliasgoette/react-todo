@@ -1,5 +1,5 @@
 .todo {
-    padding: 2em;
+    padding: 0;
 }
 
 .hidden {
@@ -15,4 +15,10 @@
 
 .add-list-button {
     width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    .todo {
+        padding: 2em;
+    }
 }

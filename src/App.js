@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import "./components/firebase";
 import { getStoredLists, setStoredLists } from "./components/storage";
 import { ERROR_STATES } from "./components/Generic/ErrorBanner";
 import Header from "./components/Generic/Header";
