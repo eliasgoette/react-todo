@@ -33,7 +33,9 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
     };
 
     const handleDueDateChange = (e) => {
-        setNewTask({ ...newTask, duedate: new Date(e.target.value).toISOString().split('T')[0] });
+        const input = e.target.value;
+        const newDueDate = input !== '' ? new Date(input).toISOString().split('T')[0] : '';
+        setNewTask({ ...newTask, duedate: newDueDate });
     };
 
     const resetStatesAndClose = () => {

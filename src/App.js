@@ -5,6 +5,7 @@ import { ERROR_STATES } from "./components/Generic/ErrorBanner";
 import Header from "./components/Generic/Header";
 import Todo from "./components/Todo/Todo";
 import ErrorBanner from "./components/Generic/ErrorBanner";
+import Footer from "./components/Generic/Footer";
 
 export default function App() {
   const [lists, setLists] = useState([]);
@@ -34,6 +35,7 @@ export default function App() {
       <Header />
       <Todo lists={lists} saveLists={saveLists} onError={reportErrorState} />
       <ErrorBanner errorState={errorState} onClearErrors={() => reportErrorState(ERROR_STATES.CLEAR)} />
+      <Footer />
     </div>
   );
 }

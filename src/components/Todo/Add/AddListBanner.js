@@ -16,7 +16,7 @@ export default function AddListBanner({ onFinishEditing, lists, saveLists, class
         if(newList.name !== '' && newList.name !== null && newList.name !== undefined) {
             const updatedLists = [newList, ...lists];
             saveLists(updatedLists);
-            onFinishEditing();
+            resetStatesAndClose();
         } else {
             onError(ERROR_STATES.WRONG_INPUT_NAME);
         }

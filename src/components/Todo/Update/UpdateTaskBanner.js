@@ -58,7 +58,8 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
         if(updatedTask.title !== '' && updatedTask.title !== null && updatedTask.title !== undefined) {
             const updatedLists = [...lists];
             if(editingListIndex !== updatedListIndex) {
-                updatedLists[editingListIndex].content.pop(editingListIndex);
+                console.log(updatedLists[editingListIndex].content[editingTaskIndex]);
+                updatedLists[editingListIndex].content.splice(editingTaskIndex, 1);
                 updatedLists[updatedListIndex].content.splice(0, 0, updatedTask);
             } else {
                 updatedLists[editingListIndex].content[editingTaskIndex] = updatedTask;

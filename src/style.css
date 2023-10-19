@@ -7,11 +7,29 @@
     border-radius: 2em;
 }
 
+::-webkit-scrollbar {
+    width: 0.75em;
+    background-color: #5f5f5f;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1em;
+    background-color: #3f3f3f;
+}
+
 html {
     background-color: #2f2f2f;
     color: white;
 
     font-family: 'Poppins', sans-serif;
+}
+
+a:any-link {
+    color: #5f5f5f;
+}
+
+a:any-link:hover {
+    color: #8f8f8f;
 }
 
 label {

@@ -1,5 +1,3 @@
-import React from "react";
-
 let lists = [];
 
 // Uncomment for demo lists
