@@ -12,10 +12,10 @@
     position: fixed;
     left: 0.5em;
     right: 0.5em;
-    bottom: 0.5em;
+    bottom: 5.5em;
 
     height: fit-content;
-    max-height: 65vh;
+    max-height: 60vh;
     overflow: auto;
 
     padding: 0.5em 1em;
@@ -90,6 +90,6 @@
 
 @media screen and (min-height: 650px) {
     .banner {
-        max-height: 80vh;
+        max-height: 60vh;
     }
 }
