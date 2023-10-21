@@ -4,6 +4,7 @@ import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButt
 import ListSelectDropdown from "../ListSelectionDropdown";
 import ButtonGroup from "../../Generic/ButtonGroup";
 import { ERROR_STATES } from "../../Generic/ErrorBanner";
+import { analytics, logEvent } from "../../firebase";
 
 export default function AddTaskBanner({editingListIndex, onFinishEditing, className='', lists, saveLists, onError }) {
     const [selectedListIndex, setSelectedListIndex] = useState(editingListIndex);
@@ -57,6 +58,7 @@ export default function AddTaskBanner({editingListIndex, onFinishEditing, classN
             updatedLists[selectedListIndex].content.splice(0, 0, newTask);
             saveLists(updatedLists);
             resetStatesAndClose();
+            logEvent(analytics, 'add_task');
         } else {
             onError(ERROR_STATES.WRONG_INPUT_TITLE);
         }

@@ -1,12 +1,9 @@
-// Import the functions you need from the SDKs you need
+// Import required classes/functions from Firebase
 import { initializeApp } from "firebase/app";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase configuration remains the same
 const firebaseConfig = {
   apiKey: "AIzaSyA_J9E5DyL2HsWIwE-yTJCg2bFxNLj4bW8",
   authDomain: "react-todo-1be64.firebaseapp.com",
@@ -17,10 +14,16 @@ const firebaseConfig = {
   measurementId: "G-M8CNKP8ZXC"
 };
 
-// Initialize Firebase
+// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
+
+// Initialize App Check
 const appCheck = initializeAppCheck(app, {
   provider: new ReCaptchaEnterpriseProvider('6Lev5bMoAAAAADfOOwnPH8hvtvM4KFMB3GmAampT'),
   isTokenAutoRefreshEnabled: true
 });
+
+// Get analytics instance
 const analytics = getAnalytics(app);
+
+export { app, appCheck, analytics, logEvent };

@@ -4,6 +4,7 @@ import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButt
 import ListSelectDropdown from "../ListSelectionDropdown";
 import ButtonGroup from "../../Generic/ButtonGroup";
 import { ERROR_STATES } from "../../Generic/ErrorBanner";
+import { analytics, logEvent } from "../../firebase";
 
 export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, onFinishEditing, lists, saveLists, className, onError }) {
     const [updatedTask, setUpdatedTask] = useState({
@@ -52,6 +53,7 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
         saveLists(updatedLists);
         onFinishEditing();
         setDefaultValues();
+        logEvent(analytics, 'delete_task');
     }
 
     const saveButtonClickHandler = () => {
@@ -67,6 +69,7 @@ export default function UpdateTaskBanner({ editingListIndex, editingTaskIndex, o
             saveLists(updatedLists);
             onFinishEditing();
             setDefaultValues();
+            logEvent(analytics, 'update_task');
         } else {
             onError(ERROR_STATES.WRONG_INPUT_TITLE);
         }

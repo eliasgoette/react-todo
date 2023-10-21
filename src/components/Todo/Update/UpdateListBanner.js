@@ -3,6 +3,7 @@ import Banner from "../../Generic/Banner";
 import MaterialButton, { BUTTON_COLOR_SCHEMES } from "../../Generic/MaterialButton";
 import ButtonGroup from "../../Generic/ButtonGroup";
 import { ERROR_STATES } from "../../Generic/ErrorBanner";
+import { analytics, logEvent } from "../../firebase";
 
 export default function UpdateListBanner({ onFinishEditing, lists, saveLists, editingListIndex, className, onError }) {
     const [updatedList, setUpdatedList] = useState({name: '', content: []});
@@ -28,6 +29,7 @@ export default function UpdateListBanner({ onFinishEditing, lists, saveLists, ed
         saveLists(updatedLists);
         onFinishEditing();
         setDefaultValues();
+        logEvent(analytics, 'delete_list');
     }
 
     const saveButtonClickHandler = () => {
@@ -37,6 +39,7 @@ export default function UpdateListBanner({ onFinishEditing, lists, saveLists, ed
             saveLists(updatedLists);
             onFinishEditing();
             setDefaultValues();
+            logEvent(analytics, 'update_list');
         } else {
             onError(ERROR_STATES.WRONG_INPUT_NAME);
         }
