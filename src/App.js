@@ -7,16 +7,27 @@ import Header from "./components/Generic/Header";
 import Todo from "./components/Todo/Todo";
 import ErrorBanner from "./components/Generic/ErrorBanner";
 import Footer from "./components/Generic/Footer";
+import { analytics, logEvent } from "./components/firebase";
 
 export default function App() {
   const [lists, setLists] = useState([]);
   const [errorState, setErrorState] = useState(ERROR_STATES.CLEAR);
 
   useEffect(() => {
-    (async () => {
-      const storedLists = await getStoredLists();
-      setLists(storedLists);
-    })();
+    const storedLists = getStoredLists();
+    setLists(storedLists);
+
+    // Log PWA installations to Analytics
+    const handleAppInstalled = () => {
+      logEvent(analytics, 'pwa_installed');
+    };
+
+    window.addEventListener('appinstalled', handleAppInstalled);
+
+    // Cleanup the listener on unmount
+    return () => {
+      window.removeEventListener('appinstalled', handleAppInstalled);
+    };
   }, []);
 
   const saveLists = async (updatedLists) => {

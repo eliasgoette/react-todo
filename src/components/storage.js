@@ -68,7 +68,7 @@ let lists = [];
 //     }
 // ];
 
-export async function getStoredLists() {
+export function getStoredLists() {
     const storedLists = localStorage.getItem('react-todo-lists');
 
     if (storedLists) {
@@ -78,6 +78,6 @@ export async function getStoredLists() {
     return lists;
 }
 
-export async function setStoredLists(updatedLists) {
+export function setStoredLists(updatedLists) {
     localStorage.setItem('react-todo-lists', JSON.stringify(updatedLists));
 }
