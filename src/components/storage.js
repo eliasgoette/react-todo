@@ -1,83 +1,47 @@
-let lists = [];
+import { db } from './firebase';
+import 'firebase/firestore';
 
-// Uncomment for demo lists
-// lists = [
-//     {
-//         name: 'Work',
-//         content: [
-//             {
-//                 title: 'Meeting',
-//                 notes: '',
-//                 completed: true,
-//                 important: true,
-//                 duedate: new Date()
-//             },
-//             {
-//                 title: 'Project',
-//                 notes: 'Ask ... for his opinion on the landing page.',
-//                 completed: false,
-//                 important: false,
-//                 duedate: new Date()
-//             },
-//             {
-//                 title: 'Learn React',
-//                 notes: 'States, hooks',
-//                 completed: false,
-//                 important: true,
-//                 duedate: new Date()
-//             },
-//             {
-//                 title: 'Apply for dev job',
-//                 notes: 'New photos',
-//                 completed: false,
-//                 important: true,
-//                 duedate: new Date()
-//             }
-//         ]
-//     },
-//     {
-//         name: 'Home',
-//         content: [
-//             {
-//                 title: 'Clean the floor',
-//                 notes: '',
-//                 completed: true,
-//                 important: false,
-//                 duedate: new Date()
-//             }
-//         ]
-//     },
-//     {
-//         name: 'Misc',
-//         content: [
-//             {
-//                 title: 'Buy ingredients for pancakes',
-//                 notes: '[ingredients]',
-//                 completed: false,
-//                 important: false,
-//                 duedate: new Date()
-//             },
-//             {
-//                 title: 'Call doc',
-//                 notes: 'For health check',
-//                 completed: false,
-//                 important: false,
-//                 duedate: new Date()
-//             }
-//         ]
-//     }
-// ];
+const isOnline = () => navigator.onLine;
 
-export function getStoredLists() {
-    const storedLists = localStorage.getItem('react-todo-lists');
+export async function getStoredLists() {
+    try {
+        let lists = [];
 
-    if (storedLists) {
-        return JSON.parse(storedLists);
+        // Fetch data from Firestore if online, else from localStorage
+        if (isOnline()) {
+            const listsCollection = await db.collection('todoLists').get();
+            lists = listsCollection.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            // Update localStorage with the latest data when online
+            localStorage.setItem('react-todo-lists', JSON.stringify(lists));
+        } else {
+            const storedLists = localStorage.getItem('react-todo-lists');
+            lists = storedLists ? JSON.parse(storedLists) : [];
+        }
+
+        return lists;
+    } catch (error) {
+        console.error("Error fetching lists: ", error);
+        return [];
     }
-
-    return lists;
 }
 
 export function setStoredLists(updatedLists) {
-    localStorage.setItem('react-todo-lists', JSON.stringify(updatedLists));
+    try {
+        // Always update localStorage
+        localStorage.setItem('react-todo-lists', JSON.stringify(updatedLists));
+
+        // If online, synchronize the data with Firestore
+        if (isOnline()) {
+            updatedLists.forEach(async (list) => {
+                if (list.id) {
+                    await db.collection('todoLists').doc(list.id).update(list);
+                } else {
+                    await db.collection('todoLists').add(list);
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Error saving lists: ", error);
+    }
 }
